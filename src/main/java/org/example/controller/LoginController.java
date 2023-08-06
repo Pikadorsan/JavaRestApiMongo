@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class LoginController {
 
     private final LoginRepository loginRepository;
-    private final String RECAPTCHA_SECRET_KEY = "6LdH84UnAAAAAKQ-BWQM9wWZmE4Nv7o8FHQvyKoq"; // Replace with your actual reCAPTCHA secret key
+    private final String RECAPTCHA_SECRET_KEY = "reCAPTCHA-secret-key"; // Replace with your actual reCAPTCHA secret key
 
     private static final Logger logger = Logger.getLogger(LoginController.class.getName());
 
