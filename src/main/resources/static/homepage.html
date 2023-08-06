@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD - Cwaniaczek</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+
+</head>
+<body>
+<div id="header"></div>
+
+<!---</br></br></br>-->
+<div class="container mt-4">
+  <h1>CRUD - Cwaniaczek</h1>
+
+  <!-- Formularz dodawania nowej książki -->
+  <h2>Dodaj nową książkę:</h2>
+  <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#addBookModal">Dodaj</button>
+
+  <!-- Tabela wyświetlająca książki -->
+  <h2>Lista książek:</h2>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Tytuł</th>
+      <th>Autor</th>
+      <th>Rok</th>
+      <th>Akcje</th>
+    </tr>
+    </thead>
+    <tbody id="bookTableBody">
+    </tbody>
+  </table>
+
+  <!-- Formularz edycji książki (okno modalne) -->
+  <div class="modal fade" id="editBookModal" tabindex="-1" role="dialog" aria-labelledby="editBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editBookModalLabel">Edytuj książkę</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="updateBookForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="editTitle">Tytuł:</label>
+              <input type="text" class="form-control" id="editTitle" required>
+            </div>
+            <div class="form-group">
+              <label for="editAuthor">Autor:</label>
+              <input type="text" class="form-control" id="editAuthor" required>
+            </div>
+            <div class="form-group">
+              <label for="editYear">Rok:</label>
+              <input type="number" class="form-control" id="editYear" required>
+            </div>
+            <input type="hidden" id="editBookId">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formularz dodawania książki (okno modalne) -->
+  <div class="modal fade" id="addBookModal" tabindex="-1" role="dialog" aria-labelledby="addBookModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBookModalLabel">Dodaj nową książkę</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="addBookForm">
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="title">Tytuł:</label>
+              <input type="text" class="form-control" id="title" required>
+            </div>
+            <div class="form-group">
+              <label for="author">Autor:</label>
+              <input type="text" class="form-control" id="author" required>
+            </div>
+            <div class="form-group">
+              <label for="year">Rok:</label>
+              <input type="number" class="form-control" id="year" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+  $(document).ready(function() {
+    // Pobierz zawartość pliku header.html i umieść go w elemencie o id="header"
+    $.get("/static/views/header.html", function(data) {
+      $("#header").html(data);
+    });
+  });
+</script>
+</body>
+</html>
